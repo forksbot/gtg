@@ -142,22 +142,21 @@ class Task(TreeNode):
     def get_title(self):
         return self.title
 
-    # Return True if the title was changed.
-    # False if the title was already the same.
     def set_title(self, title):
-        # We should check for other task with the same title
-        # In that case, we should add a number (like Tomboy does)
-        old_title = self.title
+        """Set the tasks title. Returns True if title was changed."""
+
         if title:
-            self.title = title.strip('\t\n')
+            title = title.strip('\t\n')
         else:
-            self.title = "(no title task)"
-        # Avoid unnecessary sync
-        if self.title != old_title:
+            title = '(no title task)'
+
+        # Avoid unnecessary syncing
+        if title == self.title:
+            return False
+        else:
+            self.title = title
             self.sync()
             return True
-        else:
-            return False
 
     # TODO: should we merge this function with set_title ?
     def set_complex_title(self, text, tags=[]):
