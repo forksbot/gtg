@@ -61,6 +61,7 @@ gtg_editor_sources = [
   'editor/serialize.py',
   'editor/taskview.py',
   'editor/taskview2.py',
+  'editor/text_tags.py',
 ]
 
 python3.install_sources(gtg_gtk_sources, subdir: 'GTG' / 'gtk', pure: true)
